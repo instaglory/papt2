@@ -9,7 +9,7 @@
 <script>
 import navbar from './components/navbar'
 import signin from './components/signin'
-// import uploadForm from './components/uploadForm'
+import uploadForm from './components/uploadForm'
 
 export default {
   data() {

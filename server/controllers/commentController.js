@@ -9,10 +9,19 @@ class ControllerComment{
             comments:req.body.comment, // Get comment from body
             userId: req.decode.id // Get UserId from token 
         }
+        console.log(newComment)
 
         Comment.create(newComment)
-        .then(comment =>{
-            res.status(201).json(comment)
+        .then(data =>{
+            res.status(201).json(data)
+        })
+        .catch(next)
+    }
+
+    static findAll(req, res, next){
+        Comment.find({postId: req.params.id})
+        .then(post => {
+            res.status(200).json(post)
         })
         .catch(next)
     }
