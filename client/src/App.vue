@@ -1,6 +1,7 @@
 <template>
   <div>
 
+
     <navbar 
     v-if="isLogin" 
     @loggedout="logout"
@@ -10,6 +11,7 @@
     <home v-if="isLogin"> </home>
     <profile v-if="isLogin" > </profile>
     <commentSection v-if="isLogin" > </commentSection>
+
   </div>
 </template>
 

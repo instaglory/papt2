@@ -5,9 +5,9 @@ module.exports={
      authentication(req, res, next){
          try {
             if(req.headers.hasOwnProperty('token')){
-                let decode= verify(req.headers.token)
-                req.decode= decode
-        
+                let decode = verify(req.headers.token)
+                req.decode = decode
+                console.log(req.body);
                 User.findOne({ email:req.decode.email})
                 .then(user=>{
                     if(user){
