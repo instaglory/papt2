@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#" @click="goToHomePage">
+            <a class="nav-link" href="#">
               Home
               <span class="sr-only">(current)</span>
             </a>
@@ -34,6 +34,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Liked</a>
           </li>
+          <li class="nav-item">
+            <a @click.prevent= 'logout' class="nav-link" href="#">Logout</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -44,12 +47,15 @@
 export default {
   data() {
     return {
-      message: "Hello world"
     };
   },
-  method: {
+  methods: {
     goToHomePage() {
       alert("Haloo");
+    },
+    logout(){
+      localStorage.removeItem('token')
+      this.$emit('loggedout')
     }
   }
 };

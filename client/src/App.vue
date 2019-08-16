@@ -1,9 +1,12 @@
 <template>
   <div>
 
-    <navbar v-if="isLogin" ></navbar>
+    <navbar 
+    v-if="isLogin" 
+    @loggedout="logout"
+    ></navbar>
     <uploadForm v-if="isLogin" ></uploadForm>
-    <signin @loggedin= 'login' v-if="!isLogin"></signin>
+    <signin @loggedin='login' v-if="!isLogin"></signin>
     <home v-if="isLogin"> </home>
     <profile v-if="isLogin" > </profile>
     <commentSection v-if="isLogin" > </commentSection>
@@ -36,6 +39,9 @@ export default {
     login(){
       console.log("masuk sini")
       this.isLogin = true
+    },
+    logout(){
+      this.isLogin = false
     }
   },
   created(){
