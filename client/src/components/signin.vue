@@ -139,8 +139,21 @@ export default {
           email: this.email,
           password: this.password
         }
-      });
-      
+      })
+      .then(response => {
+        Swal.fire(
+          'Success',
+          `Welcome `,
+          'success'
+        )
+      })
+      .catch(err => {
+        Swal.fire(
+        'Opppsss..',
+        'Invalid Input',
+        'error'
+        )
+      })
     },
 
     renderRegister() {
@@ -167,7 +180,14 @@ export default {
         'Good job!',
         'You clicked the button!',
         'success'
-)
+        )
+      })
+      .catch(err => {
+        Swal.fire(
+        'Opppsss..',
+        'Invalid Input',
+        'error'
+        )
       })
     }
   }
