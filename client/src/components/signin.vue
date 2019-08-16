@@ -140,6 +140,7 @@ export default {
           password: this.password
         }
       })
+
       .then(({ data })=>{
         localStorage.setItem('token', data.token)
         this.$emit('loggedin')
@@ -149,7 +150,13 @@ export default {
         'success'
         )
       })
-      
+      .catch(err => {
+        Swal.fire(
+        'Opppsss..',
+        'Invalid Input',
+        'error'
+        )
+      })
     },
 
     renderRegister() {
@@ -176,6 +183,13 @@ export default {
         'Good job!',
         'You have successfully registered as a user!',
         'success'
+        )
+      })
+      .catch(err => {
+        Swal.fire(
+        'Opppsss..',
+        'Invalid Input',
+        'error'
         )
       })
     }

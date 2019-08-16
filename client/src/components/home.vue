@@ -10,48 +10,39 @@
           </a>
         </div>
       </div>
-    </div>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="row">
-            <div class="col-12">
-              <img src="https://images.unsplash.com/photo-1498736297812-3a08021f206f?ixlib=rb-1.2.1&auto=format&fit=crop&w=757&q=80" class="card-img" alt="dummy">
-            <div class="col-12">
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-12">
-                  <div class="d-flex justify-content-center">
-                    <h4> <a href="#" @click.prevent="onComment"> <i class="far fa-comment"> </i> </a> &nbsp <a href="#"> <i class="far fa-heart"></i> </a> </h4>
+      <!-- modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="row">
+              <div class="col-6" style="padding: 0px">
+                <img class="modal-pic" src="https://images.unsplash.com/photo-1498736297812-3a08021f206f?ixlib=rb-1.2.1&auto=format&fit=crop&w=757&q=80" class="card-img" alt="dummy">
+              </div>
+              <div class="col-6" style="padding: 0px"> 
+                <div class="modal-body">
+                  <div class="d-flex justify-content-start">
+                    <small> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi neque iste consequuntur minus harum. Sit, alias. Quod aperiam fugiat accusamus quos commodi excepturi ea ex porro perferendis eum! Aliquam, laudantium!</small>
+                  </div>
+                    <h4> <a href="#" @click.prevent="onComment"> <i class="far fa-comment"> </i> </a> &nbsp <a href="#"> <i class="far fa-heart"></i> </a> &nbsp <a href="#"> <i class="far fa-share-square"></i> </a> </h4>
+                
+                  <div v-for="comment in comments">
+                    <small> {{comment.user}} {{comment.comment}} </small>
                   </div>
 
-                  <small> caption </small>
+                  <div class="mt-4">
+                  <input v-model="iscomment" placeholder="Comment..." type="text" style="height:25px; width: 330px;" class="form-control" />
+                  <div class="d-flex justify-content-center" style="margin-top: 10px">
+                    <button class="btn btn-sm btn-primary pull-right">comment</button>
+                  </div>
+                  </div>
                 </div>
-              </div>
-
-                
-              <table  class="table">
-                <thead>
-                  <tr v-for="comment in comments" :key="comment._id">
-                    <th> {{comment.user}} </th>
-                    <th> {{comment.comment}} </th>
-                  </tr>
-                </thead>
-              </table>
-
-              <input v-model="iscomment" placeholder="Comment..." type="text" style="height:50px" class="form-control" />
-              <div class="d-flex justify-content-end" style="margin-top: 10px">
-                <button class="btn btn-sm btn-primary pull-right">comment</button>
-              </div>
-            
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
   </div>
   
 </template>
@@ -87,8 +78,20 @@ export default {
           img: 'https://images.unsplash.com/photo-1531279550271-23c2a77a765c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80'
         }
       ],
-      comments:[],
-      modalphoto:{}
+       comments: [
+        {
+          user: 'baim',
+          comment: 'naise'
+        },
+        {
+          user: 'vincent',
+          comment: 'buka dikit dong'
+        },
+        {
+          user: 'yahya',
+          comment: 'dikit aja kok'
+        }
+      ]
     };
   },
   methods:{
@@ -137,6 +140,22 @@ a:hover {
   backface-visibility: hidden;
 }
 
+.modal-pic  {
+  height: 450px;
+  width: 420px
+}
 
+a {
+  color: black;
+}
+
+small {
+  font-size: 10px;
+  font-weight: normal;
+}
+
+i {
+  font-size: 15px; 
+}
 
 </style>

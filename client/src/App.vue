@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <navbar v-if="isLogin" ></navbar>
     <uploadForm v-if="isLogin" ></uploadForm>
     <signin @loggedin= 'login' v-if="!isLogin"></signin>
