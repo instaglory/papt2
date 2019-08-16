@@ -40,7 +40,7 @@ export default {
             url: `http://localhost:3000/posts`,
             data: formData,
             headers:{
-                token: localStorage.token 
+                token: localStorage.getItem('token')
             }
         })
         .then(({ data })=>{

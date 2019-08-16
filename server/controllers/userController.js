@@ -34,7 +34,6 @@ class userController {
                         }
 
                         let token = generateToken(payload)
-
                         res.status(200).json({
                             token,
                             userId: user._id,
@@ -57,9 +56,6 @@ class userController {
     }
 
     static update(req, res, next){
-        console.log(req.decode);
-        console.log(req.file);
-        console.log(req.body);
         User.updateOne({
             _id: req.decode.id
         },{
@@ -67,9 +63,16 @@ class userController {
             profilePic: req.file.cloudStoragePublicUrl
         })
         .then(response => {
-            res.status(200).json(response)
+            res.status(200).json({meesage: 'success'})
         })
         .catch(next)
+    }
+
+    static findOne(req, res, next){
+        console.log(req.decode)
+        User.findOne({
+            _id: req.dec
+        })
     }
 }
 

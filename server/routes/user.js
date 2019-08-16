@@ -8,5 +8,6 @@ const { multer, sendUploadToGCS, getPublicUrl } = require('../helpers/image');
 router.post('/login', userController.login)
 router.post('/register', userController.register)
 router.patch('/update', authentication, multer.single('profilePic'), sendUploadToGCS, userController.update)
+router.get('/', authentication, userController.findOne)
 
 module.exports = router
