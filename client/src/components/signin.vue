@@ -140,11 +140,14 @@ export default {
           password: this.password
         }
       })
-      .then(response => {
+
+      .then(({ data })=>{
+        localStorage.setItem('token', data.token)
+        this.$emit('loggedin')
         Swal.fire(
-          'Success',
-          `Welcome `,
-          'success'
+        'Good job!',
+        'Log in success!',
+        'success'
         )
       })
       .catch(err => {
@@ -178,7 +181,7 @@ export default {
       .then(response => {
         Swal.fire(
         'Good job!',
-        'You clicked the button!',
+        'You have successfully registered as a user!',
         'success'
         )
       })
