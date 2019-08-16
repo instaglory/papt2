@@ -14,8 +14,10 @@ class postController{
     }
 
     static myPost(req, res, next){
+        console.log(req.decode.id)
         Post.find({userId: req.decode.id})
         .then(posts => {
+            console.log(posts);
             res.status(200).json(posts)
         })
         .catch(next)

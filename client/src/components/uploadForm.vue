@@ -40,7 +40,7 @@ export default {
             url: `http://localhost:3000/posts`,
             data: formData,
             headers:{
-                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNTYxODhmMzQyYTBiNmVjNjViOGQyZiIsImVtYWlsIjoidmluY2VudEBtYWlsLmNvbSIsInVzZXJuYW1lIjoidmluY2VudCIsImlhdCI6MTU2NTkyMzUwMX0.Dmf814HJaUd6eXKGFvul_aJr5eotzKr1RvYDiBXz3jo'
+                token: localStorage.getItem('token')
             }
         })
         .then(({ data })=>{
