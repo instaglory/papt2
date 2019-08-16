@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row no-gutters" style="margin-top: 10px">
-        <div class="col-3 list-photo d-flex justify-content-center list-unstyled" v-for="photo in photos">
+        <div class="col-3 list-photo d-flex justify-content-center list-unstyled" v-for="photo in photos" >
           <a href="#" 
             data-toggle="modal"
             data-target="#myModal">
@@ -31,9 +31,9 @@
               </div>
 
                 
-              <table class="table">
+              <table  class="table">
                 <thead>
-                  <tr v-for="comment in comments">
+                  <tr v-for="comment in comments" :key="comment._id">
                     <th> {{comment.user}} </th>
                     <th> {{comment.comment}} </th>
                   </tr>
@@ -57,10 +57,10 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
-      message: "Hello world",
       photos: [
         {
           img: 'http://cameta.club/image_upload/tu/tumblr-bedroom-decor-fresh-teen-room-best-about-teenage_single-bedroom-701x451.jpg'
@@ -86,8 +86,26 @@ export default {
         {
           img: 'https://images.unsplash.com/photo-1531279550271-23c2a77a765c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80'
         }
-      ]
+      ],
+      comments:[],
+      modalphoto:{}
     };
+  },
+  methods:{
+    getAllPhotos(){
+      axios({
+        url:"http://localhost:3000/posts",
+        method: 'get',
+        headers: {
+          token: localStorage.token
+        }
+      }).then(({ data })=>{
+        console.log(data)
+      })
+    }
+  },
+  created(){
+    this.getAllPhotos()
   }
 };
 </script>

@@ -139,7 +139,16 @@ export default {
           email: this.email,
           password: this.password
         }
-      });
+      })
+      .then(({ data })=>{
+        localStorage.setItem('token', data.token)
+        this.$emit('loggedin')
+        Swal.fire(
+        'Good job!',
+        'Log in success!',
+        'success'
+        )
+      })
       
     },
 
@@ -165,9 +174,9 @@ export default {
       .then(response => {
         Swal.fire(
         'Good job!',
-        'You clicked the button!',
+        'You have successfully registered as a user!',
         'success'
-)
+        )
       })
     }
   }
