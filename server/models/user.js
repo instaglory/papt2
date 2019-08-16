@@ -54,7 +54,18 @@ let userSchema = new Schema({
     ],
         required : [true, 'email required'],
     },
-    password: String
+
+    password: {
+        type: String
+    },
+
+    profilPic: {
+        type: String
+    },
+
+    bio: {
+        type: String
+    }
 })
 
 userSchema.pre('save',function(next){
