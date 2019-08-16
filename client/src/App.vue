@@ -10,7 +10,7 @@
     <uploadForm v-if="uploading" ></uploadForm>
     <signin @loggedin='login' v-if="!isLogin"></signin>
     <home v-if="isLogin"> </home>
-    <profile v-if="isLogin" > </profile>
+    <profile v-if="inProfile" > </profile>
     <commentSection v-if="isLogin" > </commentSection>
 
   </div>
@@ -28,7 +28,9 @@ export default {
   data() {
     return {
       isLogin: false,
-      uploading: false
+      uploading: false,
+      inHome: false,
+      inProfile: false
     };
   },
   components:{
