@@ -5,8 +5,9 @@
     <navbar 
     v-if="isLogin" 
     @loggedout="logout"
+    @upload="upload"
     ></navbar>
-    <uploadForm v-if="isLogin" ></uploadForm>
+    <uploadForm v-if="uploading" ></uploadForm>
     <signin @loggedin='login' v-if="!isLogin"></signin>
     <home v-if="isLogin"> </home>
     <profile v-if="isLogin" > </profile>
@@ -26,7 +27,8 @@ import profile from './components/profile'
 export default {
   data() {
     return {
-      isLogin: false
+      isLogin: false,
+      uploading: false
     };
   },
   components:{
@@ -44,6 +46,9 @@ export default {
     },
     logout(){
       this.isLogin = false
+    },
+    upload(){
+      this.uploading = !this.uploading
     }
   },
   created(){

@@ -29,7 +29,7 @@
             <a class="nav-link" href="#">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Gallery</a>
+            <a @click.prevent="upload" class="nav-link" href="#"><i class="fas fa-camera"></i> upload</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Liked</a>
@@ -56,6 +56,9 @@ export default {
     logout(){
       localStorage.removeItem('token')
       this.$emit('loggedout')
+    },
+    upload(){
+      this.$emit('upload')
     }
   }
 };

@@ -18,7 +18,7 @@
           <div class="modal-content">
             <div class="row">
               <div class="col-6" style="padding: 0px">
-                <img class="modal-pic" :src="photoModal.image" class="card-img" alt="dummy">
+                <img class="modal-pic" :src="photoModal.image" class="card-img" alt="picture">
               </div>
               <div class="col-6" style="padding: 0px"> 
                 <div class="modal-body">
@@ -27,9 +27,13 @@
                     <br>
                     <small>{{photoModal.caption}}</small>
                   </div>
-                    <h4> <a href="#" @click.prevent="onComment"> <i class="far fa-comment"> </i> </a> &nbsp <a href="#"> <i class="far fa-heart"></i> </a> &nbsp <a href="#"> <i class="far fa-share-square"></i> </a> </h4>
+                    <h4> <a href="#" @click.prevent > <i class="far fa-comment"> </i> </a> 
+                    <a v-if="photoModal.likes.some(f=>{return f._id == userId})"  href="#"> <i style="color:red" @click.prevent="like" class="fas fa-heart">{{photoModal.likes.length}}</i> </a> 
+                    <a v-else href="#"> <i  @click.prevent="like" class="far fa-heart">{{photoModal.likes.length}}</i> </a> 
+                    <a href="#"> <i class="far fa-share-square"></i> 
+                    </a> <a><i v-if="photoModal.userId._id == userId" @click.prevent="deletePost" class="fa fa-trash" ></i></a></h4>
                 
-                  <div v-for="comment in comments">
+                  <div v-for="comment in comments" :key="comment._id">
                     <small> {{comment.user}} {{comment.comment}} </small>
                   </div>
 
@@ -55,14 +59,20 @@ import axios from 'axios'
 export default {
   data() {
     return {
+      userId:'',
       photoModal : {
+        image: '',
         userId:{
+          _id: '',
           username:''
-        }
+        },
+        likes:[]
       },
       photos: [],
       comments: [],
-      iscomment: ''
+      iscomment: '',
+      filterUser: false
+
     };
   },
   methods:{
@@ -79,19 +89,50 @@ export default {
       })
     },
     getModal(photo){
-      console.log('masuk modal')
       axios({
-       method: 'get',
-       url:`http://localhost:3000/posts/one/${photo._id}`,
-       headers:{
-         token: localStorage.token
-       }
-     })
-     .then(({ data })=>{
-       console.log(data)
-       this.photoModal = data
-       this.fetchComment()
-     })
+        method: 'get',
+        url:`http://localhost:3000/posts/one/${photo._id}`,
+        headers:{
+          token: localStorage.token
+        }
+      })
+      .then(({ data })=>{
+        this.photoModal = data
+        this.fetchComment()
+      })      
+    },
+    like(){
+      axios({
+        method: 'patch',
+        url:`http://localhost:3000/posts/${this.photoModal._id}`,
+        headers: {
+          token: localStorage.token
+        }
+      })
+      .then(({ data })=>{
+        console.log('liked')
+        this.getModal(this.photoModal)
+      })
+    },
+    deletePost(){
+      axios({
+        method: 'delete',
+        url:`http://localhost:3000/posts/${this.photoModal._id}`,
+        headers: {
+          token: localStorage.token
+        }
+      })
+      .then(({ data })=>{
+        console.log('deleted')
+        this.photoModal= {
+        image: 'https://cdn4.iconfinder.com/data/icons/common-toolbar/36/Delete-2-512.png',
+        userId:{
+          username:'deleted'
+        },
+        likes:[]
+      }
+      this.getAllPhotos() 
+      })
     },
     createComment(){
       console.log('masuk create comment')
@@ -123,6 +164,16 @@ export default {
   },
   created(){
     this.getAllPhotos()
+    this.userId = localStorage.userId
+  },
+  computed:{
+    filteredPhotos(){
+      if(filterUser == true){
+        return this.photos.filter(photo=>{
+          return article.author._id  == userId
+        })
+      }
+    }
   }
 };
 </script>
