@@ -12,7 +12,7 @@
 
     <button type="submit" class="btn btn-primary">Post</button>
 
-</form>
+    </form>
 </div>
 
 
@@ -40,7 +40,7 @@ export default {
             url: `http://localhost:3000/posts`,
             data: formData,
             headers:{
-                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNTU1ZmFiOTljZWYzMzExNzY0NDlmMyIsImVtYWlsIjoicmFtZGFuQG1haWwuY29tIiwidXNlcm5hbWUiOiJyYW1kYW4iLCJpYXQiOjE1NjU4NzYyMTJ9.3Ee19bgcZSFnIE4lQ5_SubtHTDNBOgKnBdcbuaQ1iiQ'
+                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNTYxODhmMzQyYTBiNmVjNjViOGQyZiIsImVtYWlsIjoidmluY2VudEBtYWlsLmNvbSIsInVzZXJuYW1lIjoidmluY2VudCIsImlhdCI6MTU2NTkyMzUwMX0.Dmf814HJaUd6eXKGFvul_aJr5eotzKr1RvYDiBXz3jo'
             }
         })
         .then(({ data })=>{
