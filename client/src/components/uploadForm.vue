@@ -7,7 +7,7 @@
             <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
         <label for="exampleInputPassword1"></label>
-        <input type="text" class="form-control" placeholder="Describe your pic...">
+        <input v-model="caption" type="text" class="form-control" placeholder="Describe your pic...">
     </div>
 
     <button type="submit" class="btn btn-primary">Post</button>
@@ -30,17 +30,21 @@ export default {
   },
   methods:{
       submit(){
-        console.log('masuk submit')
         let formData = new FormData()
         formData.append('caption', this.caption)
         formData.append('image', this.image)
+        this.caption=""
+        this.image=""
         axios({
             method: "post",
             url: `http://localhost:3000/posts`,
             data: formData,
             headers:{
-                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNTU1ZmFiOTljZWYzMzExNzY0NDlmMyIsImVtYWlsIjoicmFtZGFuQG1haWwuY29tIiwidXNlcm5hbWUiOiJyYW1kYW4iLCJpYXQiOjE1NjU4NzYyMTJ9.3Ee19bgcZSFnIE4lQ5_SubtHTDNBOgKnBdcbuaQ1iiQ'
+                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNTYxODhmMzQyYTBiNmVjNjViOGQyZiIsImVtYWlsIjoidmluY2VudEBtYWlsLmNvbSIsInVzZXJuYW1lIjoidmluY2VudCIsImlhdCI6MTU2NTkyMzUwMX0.Dmf814HJaUd6eXKGFvul_aJr5eotzKr1RvYDiBXz3jo'
             }
+        })
+        .then(({ data })=>{
+            console.log('sukses')
         })
       },
       getDataImage(){
