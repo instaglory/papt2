@@ -3,6 +3,9 @@
     <navbar></navbar>
     <uploadForm></uploadForm>
     <signin></signin>
+    <home> </home>
+    <profile> </profile>
+    <commentSection> </commentSection>
   </div>
 </template>
 
@@ -10,6 +13,9 @@
 import navbar from './components/navbar'
 import signin from './components/signin'
 // import uploadForm from './components/uploadForm'
+import commentSection from './components/comment-section'
+import home from './components/home'
+import profile from './components/profile'
 
 export default {
   data() {
@@ -18,9 +24,12 @@ export default {
     };
   },
   components:{
-    navbar: navbar,
+    navbar,
     signin,
-    uploadForm
+    uploadForm,
+    commentSection,
+    home,
+    profile
   },
   methods:{
   }
