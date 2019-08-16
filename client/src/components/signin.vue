@@ -143,6 +143,7 @@ export default {
 
       .then(({ data })=>{
         localStorage.setItem('token', data.token)
+        localStorage.setItem('userId', data.userId)
         this.$emit('loggedin')
         Swal.fire(
         'Good job!',

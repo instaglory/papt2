@@ -5,6 +5,7 @@ class postController{
     static allPost(req, res, next){
         Post.find({})
         .populate('userId')
+        .populate('likes')
         .sort({createdAt: -1})
         .then(allpost =>{
             res.status(200).json(allpost)
@@ -22,6 +23,8 @@ class postController{
 
     static findOne(req, res, next){
         Post.findById(req.params.id)
+        .populate('userId')
+        .populate('likes')
         .then(post =>{
             res.status(200).json(post)
         })
