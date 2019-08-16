@@ -1,12 +1,13 @@
 const Comment = require('../models/comment')
 
 class ControllerComment{
-    static read(req, res, next){}
+    // static read(req, res, next){}
 
     static create(req, res, next){
+        console.log(req.body)
         let newComment= {
             postId: req.params.id,  // Get postId from :id
-            comments:req.body.comment, // Get comment from body
+            comment:req.body.comment, // Get comment from body
             userId: req.decode.id // Get UserId from token 
         }
         console.log(newComment)

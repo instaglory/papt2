@@ -36,7 +36,7 @@
                   <div class="mt-4">
                   <input v-model="iscomment" placeholder="Comment..." type="text" style="height:25px; width: 330px;" class="form-control" />
                   <div class="d-flex justify-content-center" style="margin-top: 10px">
-                    <button class="btn btn-sm btn-primary pull-right">comment</button>
+                    <button class="btn btn-sm btn-primary pull-right" @click='createComment(photoModal._id)'>comment</button>
                   </div>
                   </div>
                 </div>
@@ -61,7 +61,8 @@ export default {
         }
       },
       photos: [],
-      comments: []
+      comments: [],
+      iscomment: ''
     };
   },
   methods:{
@@ -78,7 +79,46 @@ export default {
       })
     },
     getModal(photo){
-      this.photoModal = photo
+      console.log('masuk modal')
+      axios({
+       method: 'get',
+       url:`http://localhost:3000/posts/one/${photo._id}`,
+       headers:{
+         token: localStorage.token
+       }
+     })
+     .then(({ data })=>{
+       console.log(data)
+       this.photoModal = data
+       this.fetchComment()
+     })
+    },
+    createComment(){
+      console.log('masuk create comment')
+      axios({
+        url:`http://localhost:3000/comment/${this.photoModal._id}`,
+        method: 'post',
+        headers: {
+          token: localStorage.token
+        },
+        data: {comment: this.iscomment}
+      }).then(({ data })=>{
+        this.com = data
+        this.fetchComment()
+        console.log(data)
+      })
+    },
+    fetchComment(){
+      axios({
+        url:`http://localhost:3000/comment/${this.photoModal._id}`,
+        method: 'get',
+        headers: {
+          token: localStorage.token
+        }
+      }).then(({ data })=>{
+        this.comments = data
+        console.log(data)
+      })
     }
   },
   created(){
