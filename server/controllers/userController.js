@@ -55,6 +55,22 @@ class userController {
             })
             .catch(next)
     }
+
+    static update(req, res, next){
+        console.log(req.decode);
+        console.log(req.file);
+        console.log(req.body);
+        User.updateOne({
+            _id: req.decode.id
+        },{
+            bio: req.body.bio,
+            profilePic: req.file.cloudStoragePublicUrl
+        })
+        .then(response => {
+            res.status(200).json(response)
+        })
+        .catch(next)
+    }
 }
 
 module.exports = userController

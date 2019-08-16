@@ -12,7 +12,7 @@
 
     <button type="submit" class="btn btn-primary">Post</button>
 
-</form>
+    </form>
 </div>
 
 

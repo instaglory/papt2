@@ -3,9 +3,9 @@
     <navbar></navbar>
     <!-- <uploadForm></uploadForm> -->
     <!-- <signin></signin> -->
-    <home> </home>
-    <!-- <profile> </profile> -->
-    <commentSection> </commentSection>
+    <!-- <home> </home> -->
+    <profile> </profile>
+    <!-- <commentSection> </commentSection> -->
   </div>
 </template>
 

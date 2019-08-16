@@ -59,7 +59,7 @@ let userSchema = new Schema({
         type: String
     },
 
-    profilPic: {
+    profilePic: {
         type: String
     },
 
