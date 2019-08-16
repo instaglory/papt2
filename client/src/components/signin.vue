@@ -139,8 +139,24 @@ export default {
           email: this.email,
           password: this.password
         }
-      });
-      
+      })
+
+      .then(({ data })=>{
+        localStorage.setItem('token', data.token)
+        this.$emit('loggedin')
+        Swal.fire(
+        'Good job!',
+        'Log in success!',
+        'success'
+        )
+      })
+      .catch(err => {
+        Swal.fire(
+        'Opppsss..',
+        'Invalid Input',
+        'error'
+        )
+      })
     },
 
     renderRegister() {
@@ -165,9 +181,16 @@ export default {
       .then(response => {
         Swal.fire(
         'Good job!',
-        'You clicked the button!',
+        'You have successfully registered as a user!',
         'success'
-)
+        )
+      })
+      .catch(err => {
+        Swal.fire(
+        'Opppsss..',
+        'Invalid Input',
+        'error'
+        )
       })
     }
   }

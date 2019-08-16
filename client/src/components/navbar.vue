@@ -1,6 +1,11 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <img src="../../image/logo_transparent.png" alt />
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light mt-auto" style="background-color: white;">
       <button
         class="navbar-toggler"
         type="button"
@@ -12,7 +17,6 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <img src="../resources/pictures/icon.png" class="img-icon" />
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
@@ -56,13 +60,15 @@ export default {
   display: flex;
   justify-content: center;
   height: 40px;
-  margin-top: 90px;
+  font-size: 18px;
+  margin-bottom: 20px;
 }
-.img-icon {
-  position: absolute;
-  height: 100px;
-  top: 10px;
-  left: 51%;
-  margin-left: -65px;
+img {
+  height: 200px;
+  width: 200px;
+}
+nav {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>    

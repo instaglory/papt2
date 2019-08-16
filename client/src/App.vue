@@ -1,8 +1,12 @@
 <template>
   <div>
-    <navbar></navbar>
-    <uploadForm></uploadForm>
-    <signin></signin>
+
+    <navbar v-if="isLogin" ></navbar>
+    <uploadForm v-if="isLogin" ></uploadForm>
+    <signin @loggedin= 'login' v-if="!isLogin"></signin>
+    <home v-if="isLogin"> </home>
+    <profile v-if="isLogin" > </profile>
+    <commentSection v-if="isLogin" > </commentSection>
   </div>
 </template>
 
@@ -10,19 +14,35 @@
 import navbar from './components/navbar'
 import signin from './components/signin'
 import uploadForm from './components/uploadForm'
+import commentSection from './components/comment-section'
+import home from './components/home'
+import profile from './components/profile'
 
 export default {
   data() {
     return {
-      message: "Hello world"
+      isLogin: false
     };
   },
   components:{
-    navbar: navbar,
+    navbar,
     signin,
-    uploadForm
+    uploadForm,
+    commentSection,
+    home,
+    profile
   },
   methods:{
+    login(){
+      console.log("masuk sini")
+      this.isLogin = true
+    }
+  },
+  created(){
+    if(localStorage.getItem('token')){
+      this.login()
+    }
+    
   }
 };
 </script>
